@@ -13,7 +13,8 @@ class App extends Component {
         <div className="App">
           <Buttons
             onCreate={onCreate}
-            onRemove={onRemove}/>
+            onRemove={onRemove}
+          />
           <CounterListContainer/>
         </div>
     )
