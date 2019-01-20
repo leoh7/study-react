@@ -5,3 +5,8 @@
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const SET_COLOR = 'SET_COLOR';
+
+// 카운터 추가
+export const CREATE = 'CREATE';
+// 카운터 제거
+export const REMOVE = 'REMOVE';
