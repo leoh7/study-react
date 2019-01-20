@@ -1,5 +1,5 @@
-// action 객체를 만드는 액션 생성 함수들을 선언함(action creators)
-// 여기에서 () => ({}) 는 function () { return {} } 와 동일함
+// action 객체를 만드는 액션 생성 함수들을 선언한다(action creators)
+// 여기에서 () => ({}) 는 function() { return {} } 와 동일한 의미임
 
 import * as types from './ActionTypes';
 
