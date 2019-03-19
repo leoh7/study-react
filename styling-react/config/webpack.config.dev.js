@@ -165,7 +165,9 @@ module.exports = {
 				// css 파일에서 import와 url 문을 webpack의 require 기능으로 처리하는 역할
                 loader: require.resolve('css-loader'),
                 options: {
-                  importLoaders: 1,
+				  importLoaders: 1,
+				  modules: true,
+				  localIdentName: '[path][name]__[local]--[hash:base64:5]',
                 },
               },
               {
