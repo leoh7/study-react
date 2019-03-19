@@ -4,6 +4,7 @@ import styles from './App.scss';
 const cx = classNames.bind(styles);
 
 console.log(styles);
+import Button from './components/Button';
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
 				blue: isBlue
 			})}>
 				<div className={cx('box-inside')}/>
+			<div>
+				<Button>버튼</Button>
 			</div>
     );
   }
