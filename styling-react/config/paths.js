@@ -52,4 +52,6 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+	// styles 폴더의 경로를 직접 지정해 주어 상대경로로 작성하는 것을 회피
+	styles: resolveApp('src/styles'),
 };
