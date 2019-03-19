@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // const cx = classNames.bind(styles);
 // console.log(styles);
 import Button from './components/Button';
+import StyledButton from './components/StyledButton'
 
 class App extends Component {
   render() {
@@ -16,7 +17,12 @@ class App extends Component {
 			// 	<div className={cx('box-inside')}/>
 			// </div>
 			<div>
-				<Button>버튼</Button>
+				<div>
+					<Button>버튼</Button>
+				</div>
+				<div>
+					<StyledButton big>버튼</StyledButton>
+				</div>
 			</div>
     );
   }
