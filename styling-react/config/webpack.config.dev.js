@@ -231,7 +231,9 @@ module.exports = {
 							{
 								loader: require.resolve('sass-loader'),
 								options: {
-									// 추후 입력
+									// config/paths.js 에서 styles: resolveApp('src/styles')
+									// 옵션을 가져와 적용 시켜줌
+									includePaths: [paths.styles]
 								},
 							},
             ],
