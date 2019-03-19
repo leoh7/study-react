@@ -1,6 +1,7 @@
 @import '~open-color/open-color';
 @import '~include-media/dist/include-media';
 
+// 반응형 디자인을 위한 기준점
 $breakpoints: (
 	small: 376px,
 	medium: 768px,
