@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
   onDecrement: () => dispatch(actions.decrement()),
   onSetColor: () => {
     const color = getRandomColor();
-    dispatch(actions.setColor(color));;
+    dispatch(actions.setColor(color));
   }
 });
 
