@@ -1,0 +1,28 @@
+@import '../../styles/utils.scss';
+
+.todo-item {
+  padding: 1rem;
+  .tick {
+
+  }
+  .text {
+    &.done {
+
+    }
+  }
+  .delete {
+    &:hover {
+
+    }
+  }
+  &:nth-child(odd) {
+
+  }
+  &:hover {
+
+  }
+}
+
+.todo-item + .todo-item {
+
+}
