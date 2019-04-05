@@ -15,10 +15,10 @@ class App extends Component {
   }
 
   render() {
-    const { input } = this.state;
+    const { input } = this.state; // 비구조화 할당
     const {
       handleChange
-    } = this;
+    } = this; // 비구조화 할당
 
     return(
       <PageTemplate>
