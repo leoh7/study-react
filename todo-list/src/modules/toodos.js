@@ -13,8 +13,37 @@ export const remove = createActions(REMOVE);
 
 // 리듀서 초기 상태 정의
 const initialState = List([
-  Map(), 
-  Map()
+  Map({
+    id: 0,
+    text: '리액트 공부하기',
+    done: true
+  }), 
+  Map({
+    id: 1,
+    text: '컴포넌트 스타일링 해보기',
+    done: false
+  })
 ]);
 
 // 리듀서
+export default handleActions({
+  [INSERT]: (state, action) => {
+    const { id, text, done } = action.payload;
+    return state.push(Map({
+      id,
+      text,
+      done
+    }));
+  },
+  [TOGGLE]: (state, action) => {
+    const { id } = action.payload;
+    
+    // 전달받은 id 로 index 를 조회
+    const index = state.findIndex(todo => todo.get('id') === id);
+    // return state.setIn([index, 'done'], !state.getIn([0, index]));
+    return state.updateIn([index, 'done'], done => !done);
+  },
+  [REMOVE]: (state, action) => {
+
+  }
+});
