@@ -7,3 +7,8 @@ const SET_INPUT = 'input/SET_INPUT';
 
 // 액션 생성 함수
 export const setInput = createActions(SET_INPUT);
+
+// 리듀서 초기 상태 정의
+const initailState = Map({
+  value: ''
+});
