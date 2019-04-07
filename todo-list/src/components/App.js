@@ -12,31 +12,6 @@ class App extends Component {
     ]
   }
 
-  id = 1;
-  getId = () => {
-    return ++this.id;
-  }
-
-  handleChange = (e) => {
-    const { value } = e.target;
-    this.setState({
-      input: value
-    });
-  }
-
-  handleInsert = () => {
-    const { todos, input } = this.state;
-    const newTodo = {
-      id: this.getId(),
-      text: input,
-      done: false
-    }
-    this.setState({
-      todos: [...todos, newTodo],
-      input: ''
-    })
-  }
-
   // todo 아이템 토글하기
   handleToggle = (id) => {
     // id로 배열의 인덱스를 찾음

@@ -8,9 +8,41 @@ import * as inputActions from '../modules/input';
 import * as todosActions from '../modules/todos';
 
 class TodoInputContainer extends Component {
+  // src/component/App.js 에서 handleChange, handleInsert메서드 가져와 수정함
+  id = 1;
+  getId = () => {
+    return ++this.id;
+  }
+
+  handleChange = (e) => {
+    const { value } = e.target;
+    const { InputActions } = this.props;
+    // this.setState({
+    //   input: value
+    // });
+    InputActions.setInput(value);
+  }
+
+  handleInsert = () => {
+    const { InputActions, TodosActions, value } = this.props;
+    const todo = {
+      id: this.getId(),
+      text: value,
+      done: false
+    };
+    TodosActions.handleInsert(todo);
+    InputActions.setInput('');
+  }
+
   render() {
+    const { value } = this.props;
+    const { handleChange, handleInsert } = this;
     return (
-      <TodoInput/>
+      <TodoInput
+        onChange={handleChange}
+        onInsert={handleInsert}
+        value={value}
+      />
     );
   }
 }
