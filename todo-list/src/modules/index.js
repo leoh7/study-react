@@ -1,5 +1,5 @@
 import input from './input';
-import todos from './toodos';
+import todos from './todos';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
