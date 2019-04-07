@@ -48,4 +48,4 @@ export default handleActions({
     const index = state.findIndex(todo => todo.get('id') === id);
     return state.delete(index);
   }
-});
+}, initialState);
