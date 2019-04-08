@@ -30,7 +30,7 @@ class TodoInputContainer extends Component {
       text: value,
       done: false
     };
-    TodosActions.handleInsert(todo);
+    TodosActions.insert(todo);
     InputActions.setInput('');
   }
 
