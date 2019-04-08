@@ -52,7 +52,7 @@ export default connect(
     value: state.input.get('value')
   }),
   (dispatch) => ({
-    inputActions: bindActionCreators(inputActions, dispatch),
-    todosActions: bindActionCreators(todosActions, dispatch)
+    InputActions: bindActionCreators(inputActions, dispatch),
+    TodosActions: bindActionCreators(todosActions, dispatch)
   })
 )(TodoInputContainer);
