@@ -4,7 +4,7 @@ import TodoList from '../components/TodoList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as TodosActions from '../modules/todos';
+import * as todosActions from '../modules/todos';
 
 class TodoListContainer extends Component {
   handleToggle = (id) => {
@@ -15,7 +15,6 @@ class TodoListContainer extends Component {
     const { TodosActions } = this.props;
     TodosActions.remove(id);
   }
-
   render() {
     const { todos } = this.props;
     const { handleToggle, handleRemove } = this;
@@ -35,6 +34,6 @@ export default connect(
     todos: state.todos
   }),
   (dispatch) => ({
-    todosActions: bindActionCreators(TodosActions, dispatch)
+    TodosActions: bindActionCreators(todosActions, dispatch)
   })
 )(TodoListContainer);
