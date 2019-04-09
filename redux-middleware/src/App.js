@@ -6,7 +6,7 @@ import * as postActions from './modules/post';
 
 class App extends Component {
     
-    loadData = () => {
+    loadData = async () => {
         const { PostActions, number } = this.props;
         try {
             const response = await PostActions.getPost(number);
