@@ -3,10 +3,10 @@ import modules from './modules';
 
 import { createLogger } from 'redux-logger'
 // import ReduxThunk from 'redux-thunk';
-import promiseMiddleware from 'redux-promise-middleware';
+import { createPromise } from 'redux-promise-middleware';
 
 const logger = createLogger();
-const pm = promiseMiddleware({
+const pm = createPromise({
   promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'FAILURE']
 });
 
