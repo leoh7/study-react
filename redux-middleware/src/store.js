@@ -10,6 +10,6 @@ const pm = promiseMiddleware({
   promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'FAILURE']
 });
 
-const store = createStore(modules, applyMiddleware(logger, pm))
+const store = createStore(modules, applyMiddleware(logger, pm));
 
 export default store;
