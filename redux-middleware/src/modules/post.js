@@ -1,5 +1,5 @@
 import { handleActions, createAction } from 'redux-actions';
-import { pender } from 'redux-pender';
+import { pender, applyPenders } from 'redux-pender';
 import axios from 'axios';
 
 function getPostAPI(postId) {
@@ -19,8 +19,12 @@ const initialState = {
   }
 }
 
-export default handleActions({
-  ...pender({
+const reducer = handleActions({
+  // 다른 일반 액션들을 관리...
+}, initialState);
+
+export default applyPenders(reducer, [
+  {
     type: GET_POST,
     onSuccess: (state, action) => {
       const { title, body } = action.payload.data;
@@ -31,5 +35,5 @@ export default handleActions({
         }
       }
     }
-  })
-}, initialState);
+  }
+]);
