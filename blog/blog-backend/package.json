@@ -14,5 +14,8 @@
     "eslint-plugin-react": "^7.12.4",
     "nodemon": "^1.18.11"
   },
+  "scripts": {
+    "start": "node src",
+    "start:dev": "nodemon --watch src/ src/index.js"
   }
 }
