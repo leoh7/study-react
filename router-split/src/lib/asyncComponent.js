@@ -7,7 +7,6 @@ export default function asyncComponent(getComponent) {
 
     constructor(props) {
       super(props);
-      console.log(AsyncComponent.Component);
       if(AsyncComponent.Component) return;
       getComponent().then(({default: Component}) => {
         AsyncComponent.Component = Component;
@@ -21,7 +20,7 @@ export default function asyncComponent(getComponent) {
         return <Component {...this.props} />
       }
 
-      return null
+      return null;
     }
   }
 }
