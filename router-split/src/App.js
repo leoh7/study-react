@@ -7,14 +7,14 @@ import {
   Posts
 } from 'pages';
 import Menu from 'components/Menu';
-import AsyncSplitMe from 'components/AsyncSplitMe';
+// import AsyncSplitMe from 'components/AsyncSplitMe';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Menu />
-        <AsyncSplitMe />
+        {/* <AsyncSplitMe /> */}
         <Route exact path="/" component={Home} />
         {/* <Route exact path="/about" component={About} /> */}
         <Route path="/about/:name?" component={About} />
