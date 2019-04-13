@@ -1,22 +1,20 @@
 const Koa = require('koa');
+const Router = require('koa-router');
 
 const app = new Koa();
+const router = new Router();
 
-app.use(async (ctx, next) => {
-  console.log(1);
-  await next();
-  console.log('bye');
+// 라우터 설정
+// 첫번째 파라미터에 path, 그 다음에는 라우트를 처리할 함수를 전달
+router.get('/', (ctx) => {
+  ctx.body = '홈';
+});
+router.get('/about', (ctx) => {
+  ctx.body = '소개';
 });
 
-app.use((ctx, next) => {
-  console.log(2);
-  next();
-});
-
-app.use((ctx) => {
-  ctx.body = 'hello world';
-  console.log(ctx);
-});
+// app 인스턴스에 라우터 적용
+app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(4000, () => {
   console.log('listening to port 4000');
