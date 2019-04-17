@@ -34,6 +34,18 @@ exports.list = (ctx) => {
 
 // 특정 포스트 조회
 // GET /api/posts/:id
+exports.read = (ctx) => {
+  const { id } = ctx.params;
+  const post = posts.find(p => p.id.toString() === id);
+  if(!post) {
+    ctx.status = 404;
+    ctx.body = {
+      message: '포스트가 존재하지 않습니다.'
+    };
+    return;
+  }
+  ctx.body = post;
+}
 
 // 포스트 제거
 // DELETE /api/posts/:id
