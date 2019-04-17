@@ -26,3 +26,18 @@ exports.write = (ctx) => {
   ctx.body = post;
 };
 
+// 포스트 목록 조회
+// GET /api/posts
+// 특정 포스트 조회
+// GET /api/posts/:id
+
+// 포스트 제거
+// DELETE /api/posts/:id
+
+// 포스트 수정(교체)
+// PUT /api/posts/:id
+// { title, body }
+
+// 포스트 수정(특정 필드 변경)
+// PATCH /api/posts/:id
+// { title, body }
