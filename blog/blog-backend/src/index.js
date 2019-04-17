@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 
 const api = require('./api');
 
@@ -9,6 +10,9 @@ const router = new Router();
 // 라우터 설정
 // 첫번째 파라미터에 path, 그 다음에는 라우트를 처리할 함수를 전달
 router.use('/api', api.routes()); // api 라우트 적용
+
+// 라우터 적용 전, bodyParser 적용
+app.use(bodyParser());
 
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
