@@ -86,6 +86,22 @@ exports.replace = (ctx) => {
 // 포스트 수정(특정 필드 변경)
 // PATCH /api/posts/:id
 // { title, body }
+exports.update = (ctx) => {
+  const { id } = ctx.params;
+  const index = findIndexWithId(id);
+  if(index === -1) {
+    ctx.status = 404;
+    ctx.body = {
+      message: '포스트가 존재하지 않습니다'
+    };
+    return;
+  }
+  posts[index] = {
+    ...posts[index],
+    ...ctx.request.body
+  };
+  ctx.body = posts[index];
+}
 
 function findIndexWithId(id) {
   return posts.findIndex(p => p.id.toString() === id);
