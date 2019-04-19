@@ -51,7 +51,7 @@ exports.read = (ctx) => {
 // DELETE /api/posts/:id
 exports.remove = (ctx) => {
   const { id } = ctx.params;
-  const index = posts.findIndex(p => p.id.toString() === id);
+  const index = findIndexWithId(id);
   if(index === -1) {
     ctx.status = 404;
     ctx.body = {
@@ -70,3 +70,7 @@ exports.remove = (ctx) => {
 // 포스트 수정(특정 필드 변경)
 // PATCH /api/posts/:id
 // { title, body }
+
+function findIndexWithId(id) {
+  return posts.findIndex(p => p.id.toString() === id);
+}
