@@ -66,6 +66,22 @@ exports.remove = (ctx) => {
 // 포스트 수정(교체)
 // PUT /api/posts/:id
 // { title, body }
+exports.replace = (ctx) => {
+  const { id } = ctx.params;
+  const index = findIndexWithId(id);
+  if(index === -1) {
+    ctx.status = 404;
+    ctx.body = {
+      message: '포스트가 존재하지 않습니다'
+    };
+    return;
+  }
+  posts[index] = {
+    id,
+    ...ctx.request.body
+  };
+  ctx.body = posts[index];
+}
 
 // 포스트 수정(특정 필드 변경)
 // PATCH /api/posts/:id
