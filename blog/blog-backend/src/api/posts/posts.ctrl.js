@@ -4,7 +4,20 @@ const Post = require('models/post');
 // POST /api/posts
 // { title, body }
 
-exports.write = (ctx) => {
+exports.write = async (ctx) => {
+  const { title, body, tags } = ctx.request.body;
+
+  // 새 Post 인스턴스 생성
+  const post = new Post({
+    title, body, tags
+  });
+
+  try {
+    await post.save();  // 데이터베이스에 등록
+    ctx.body = post;    // 저장된 결과를 반환
+  } catch (e) {
+    ctx.throw(e, 500);
+  }
 };
 
 // 포스트 목록 조회
