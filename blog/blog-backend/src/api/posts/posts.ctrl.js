@@ -33,7 +33,18 @@ exports.list = async (ctx) => {
 
 // 특정 포스트 조회
 // GET /api/posts/:id
-exports.read = (ctx) => {
+exports.read = async (ctx) => {
+  try {
+    const { id } = ctx.params;
+    const post = await Post.findById(id).exec();
+    if(!post) {
+      ctx.status = 404;
+      return;
+    }
+    ctx.body = post;
+  } catch (e) {
+    ctx.throw(e, 500);
+  }
 }
 
 // 포스트 제거
