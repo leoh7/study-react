@@ -49,7 +49,14 @@ exports.read = async (ctx) => {
 
 // 포스트 제거
 // DELETE /api/posts/:id
-exports.remove = (ctx) => {
+exports.remove = async (ctx) => {
+  try {
+    const { id } = ctx.params;
+    await Post.findByIdAndDelete(id).exec();
+    ctx.status = 204;
+  } catch (e) {
+    ctx.throw(e, 500);
+  }
 }
 
 // 포스트 수정(특정 필드 변경)
