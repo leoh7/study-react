@@ -62,5 +62,18 @@ exports.remove = async (ctx) => {
 // 포스트 수정(특정 필드 변경)
 // PATCH /api/posts/:id
 // { title, body }
-exports.update = (ctx) => {
+exports.update = async (ctx) => {
+  try {
+    const { id } = ctx.params;
+    const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+      new: true
+    }).exec();
+    if(!post) {
+      ctx.status = 404;
+      return;
+    }
+    ctx.body = post;
+  } catch (e) {
+    ctx.throw(e, 500);
+  }
 }
