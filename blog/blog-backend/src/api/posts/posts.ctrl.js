@@ -1,4 +1,14 @@
 const Post = require('models/post');
+const { ObjectId } = require('mongoose').Types;
+
+exports.checkObjectId = (ctx, next) => {
+  const { id } = ctx.params;
+  if(!ObjectId.isValid(id)) {
+    ctx.status = 400; // 400 Bad Request
+    return null;
+  }
+  return next();  // next를 return 해야 ctx.body가 제대로 설정됨
+}
 
 // 포스트 작성
 // POST /api/posts
