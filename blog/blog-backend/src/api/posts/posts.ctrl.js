@@ -1,5 +1,6 @@
 const Post = require('models/post');
 const { ObjectId } = require('mongoose').Types;
+const Joi = require('joi');
 
 exports.checkObjectId = (ctx, next) => {
   const { id } = ctx.params;
@@ -15,6 +16,20 @@ exports.checkObjectId = (ctx, next) => {
 // { title, body }
 
 exports.write = async (ctx) => {
+  const schema = Joi.object().keys({
+    title: Joi.string().required(),
+    body: Joi.string().required(),
+    tags: Joi.array().items(Joi.string()).required()
+  });
+
+  const result = Joi.validate(ctx.request.body, schema);  // params: 검증할 객체, 스키마
+
+  if(result.error) {
+    ctx.status = 400;
+    ctx.body = result.error;
+    return;
+  }
+  
   const { title, body, tags } = ctx.request.body;
 
   // 새 Post 인스턴스 생성
