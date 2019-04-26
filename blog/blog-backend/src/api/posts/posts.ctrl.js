@@ -1,10 +1,35 @@
 const Post = require('models/post');
+const { ObjectId } = require('mongoose').Types;
+const Joi = require('joi');
+
+exports.checkObjectId = (ctx, next) => {
+  const { id } = ctx.params;
+  if(!ObjectId.isValid(id)) {
+    ctx.status = 400; // 400 Bad Request
+    return null;
+  }
+  return next();  // next를 return 해야 ctx.body가 제대로 설정됨
+}
 
 // 포스트 작성
 // POST /api/posts
 // { title, body }
 
 exports.write = async (ctx) => {
+  const schema = Joi.object().keys({
+    title: Joi.string().required(),
+    body: Joi.string().required(),
+    tags: Joi.array().items(Joi.string()).required()
+  });
+
+  const result = Joi.validate(ctx.request.body, schema);  // params: 검증할 객체, 스키마
+
+  if(result.error) {
+    ctx.status = 400;
+    ctx.body = result.error;
+    return;
+  }
+  
   const { title, body, tags } = ctx.request.body;
 
   // 새 Post 인스턴스 생성
