@@ -53,13 +53,16 @@ exports.list = async (ctx) => {
     ctx.status = 400;
     return;
   }
-  
+
   try {
     const posts = await Post.find()
       .sort({_id: -1})  // 내림차순 정렬 -1 / 오름차순 정렬 1
       .limit(10)
       .skip((page - 1) * 10)
       .exec();
+      
+    const postCount = await Post.countDocuments().exec();
+    ctx.set('Last-Page', Math.ceil(postCount / 10));
     ctx.body = posts;
   } catch (e) {
     ctx.throw(e, 500);    
