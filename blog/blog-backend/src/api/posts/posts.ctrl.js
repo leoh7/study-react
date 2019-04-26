@@ -49,7 +49,9 @@ exports.write = async (ctx) => {
 // GET /api/posts
 exports.list = async (ctx) => {
   try {
-    const posts = await Post.find().exec();
+    const posts = await Post.find()
+      .sort({_id: -1})  // 내림차순 정렬 -1 / 오름차순 정렬 1
+      .exec();
     ctx.body = posts;
   } catch (e) {
     ctx.throw(e, 500);    
