@@ -1,12 +1,12 @@
 import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
-import Button from 'components/common/Button';
+import ListWrapper from 'components/list/ListWrapper';
 
 const ListPage = () => {
   return (
     <PageTemplate>
-      List
-      <Button />
+      <ListWrapper>
+      </ListWrapper>
     </PageTemplate>
   );
 };
