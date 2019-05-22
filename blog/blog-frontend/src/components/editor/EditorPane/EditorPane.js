@@ -1,0 +1,20 @@
+import React from 'react';
+import styles from './EditorPane.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
+
+const EditorPane = () => {
+  return (
+    <div className={cx('editor-pane')}>
+      <input className={cx('title')} placeholder="제목을 입력하세요" name="title" />
+      <div className={cx('code-editor')}></div>
+      <div className={cx('tags')}>
+        <div className={cx('description')}>태그</div>
+        <input placeholder="태그를 입력하세요 (쉼표로 구분)" name="tags" />
+      </div>
+    </div>
+  );
+}
+
+export default EditorPane;
