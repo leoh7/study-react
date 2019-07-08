@@ -1,10 +1,35 @@
 const Post = require('models/post');
+const { ObjectId } = require('mongoose').Types;
+const Joi = require('joi');
+
+exports.checkObjectId = (ctx, next) => {
+  const { id } = ctx.params;
+  if(!ObjectId.isValid(id)) {
+    ctx.status = 400; // 400 Bad Request
+    return null;
+  }
+  return next();  // next를 return 해야 ctx.body가 제대로 설정됨
+}
 
 // 포스트 작성
 // POST /api/posts
 // { title, body }
 
 exports.write = async (ctx) => {
+  const schema = Joi.object().keys({
+    title: Joi.string().required(),
+    body: Joi.string().required(),
+    tags: Joi.array().items(Joi.string()).required()
+  });
+
+  const result = Joi.validate(ctx.request.body, schema);  // params: 검증할 객체, 스키마
+
+  if(result.error) {
+    ctx.status = 400;
+    ctx.body = result.error;
+    return;
+  }
+  
   const { title, body, tags } = ctx.request.body;
 
   // 새 Post 인스턴스 생성
@@ -23,9 +48,27 @@ exports.write = async (ctx) => {
 // 포스트 목록 조회
 // GET /api/posts
 exports.list = async (ctx) => {
+  const page = parseInt(ctx.query.page || 1, 10);
+  if(page < 1) {
+    ctx.status = 400;
+    return;
+  }
+
   try {
-    const posts = await Post.find().exec();
-    ctx.body = posts;
+    const posts = await Post.find()
+      .sort({_id: -1})  // 내림차순 정렬 -1 / 오름차순 정렬 1
+      .limit(10)
+      .skip((page - 1) * 10)
+      .lean()
+      .exec();
+      
+    const postCount = await Post.countDocuments().exec();
+    const limitBodyLength = post => ({
+      ...post,
+      body: post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`
+    });
+    ctx.body = posts.map(limitBodyLength);
+    ctx.set('Last-Page', Math.ceil(postCount / 10));
   } catch (e) {
     ctx.throw(e, 500);    
   }
